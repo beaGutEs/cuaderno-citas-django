@@ -90,4 +90,3 @@ Relaciones:
 - Imágenes: Pillow (ImageField)
 - Autenticación: sistema de Django con login_required
 - Validación: al menos texto o imagen obligatorio
-```
