@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+
+{% block title %}Inspiración Aleatoria{% endblock %}
+
+{% block content %}
+<div class="text-center">
+    <div style="display: inline-flex; align-items: center; gap: 0.75rem; margin-bottom: 1rem;">
+        <div style="width: 40px; height: 40px; background: #f0fdf4; border-radius: 10px; display: flex; align-items: center; justify-content: center;">
+            <i class="bi bi-shuffle" style="font-size: 20px; color: #166534;"></i>
+        </div>
+        <h1 style="margin: 0;">Inspiración Aleatoria</h1>
+    </div>
+    
+    {% if cita %}
+        <div class="card mx-auto mt-4" style="max-width: 600px;">
+            {% if cita.image %}
+            <img src="{{ cita.image.url }}" style="width: 100%; height: auto; object-fit: contain; border-radius: 12px 12px 0 0;" alt="Imagen">
+            {% endif %}
+            
+            <div class="card-body">
+                {% if cita.text %}
+                <blockquote class="blockquote">
+                    <p>{{ cita.text }}</p>
+                </blockquote>
+                {% endif %}
+                
+                {% if cita.source %}
+                <p class="text-muted">— {{ cita.source }}</p>
+                {% endif %}
+                
+                {% if cita.tag %}
+                <span class="badge bg-info">{{ cita.tag.name }}</span>
+                {% endif %}
+                
+                {% if cita.is_favorite %}
+                <span class="badge bg-warning">Favorita</span>
+                {% endif %}
+            </div>
+        </div>
+        
+        <div class="mt-4">
+            <a href="{% url 'citas:quote_random' %}" class="btn btn-primary btn-lg">Otra inspiración</a>
+            <a href="{% url 'citas:quote_edit' cita.pk %}" class="btn btn-outline-secondary">Editar esta</a>
+        </div>
+    {% else %}
+        <div class="alert alert-info mt-4">
+            No tienes contenido todavía.
+            <a href="{% url 'citas:quote_create' %}">Añade tu primera inspiración</a>
+        </div>
+    {% endif %}
+</div>
+{% endblock %}

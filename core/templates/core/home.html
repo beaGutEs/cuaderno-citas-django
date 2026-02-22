@@ -1,0 +1,92 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Inicio - Cuaderno de Citas{% endblock %}
+
+{% block content %}
+<!-- Hero section con imagen de fondo -->
+<div class="hero-section" style="background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%); border-radius: 16px; padding: 4rem 2rem; margin-bottom: 3rem;">
+    <div class="row align-items-center">
+        <div class="col-lg-6">
+            <h1 style="font-size: 2.5rem; margin-bottom: 1rem; color: #78350f;">
+                Tu espacio de inspiración
+            </h1>
+            <p style="font-size: 1.1rem; color: #92400e; margin-bottom: 2rem;">
+                Guarda memes, citas, imágenes inspiracionales o cualquier cosa que te motive.
+                Organízalo todo por temas y encuéntralo cuando lo necesites.
+            </p>
+            
+            {% if user.is_authenticated %}
+                <a href="{% url 'citas:quote_create' %}" class="btn btn-primary btn-lg">Añadir Contenido</a>
+                <a href="{% url 'citas:quote_list' %}" class="btn btn-outline-primary btn-lg">Ver Mi Colección</a>
+            {% else %}
+                <a href="{% url 'accounts:register' %}" class="btn btn-primary btn-lg">Empezar Ahora</a>
+                <a href="{% url 'accounts:login' %}" class="btn btn-outline-primary btn-lg">Ya tengo cuenta</a>
+            {% endif %}
+        </div>
+        
+        <div class="col-lg-6 text-center">
+            <img src="{% static 'img/logo.jpg' %}" alt="Ilustración" style="max-width: 350px; width: 100%; border-radius: 12px; box-shadow: 0 8px 24px rgba(0,0,0,0.15);">
+        </div>
+    </div>
+</div>
+
+<!-- Sección de ejemplos -->
+<div class="text-center" style="margin: 3rem 0;">
+    <h3 style="font-size: 1.3rem; margin-bottom: 1.5rem; font-weight: 600;">Ejemplos de lo que puedes guardar</h3>
+    
+    <div class="row">
+        <div class="col-md-3 mb-3">
+            <img src="{% static 'img/ejemplo1.jpg' %}" class="img-fluid" style="border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.08); width: 100%;">
+            <p style="margin-top: 0.75rem; color: var(--text-light); font-size: 0.9rem;">Citas motivacionales</p>
+        </div>
+        
+        <div class="col-md-3 mb-3">
+            <img src="{% static 'img/ejemplo2.jpg' %}" class="img-fluid" style="border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.08); width: 100%;">
+            <p style="margin-top: 0.75rem; color: var(--text-light); font-size: 0.9rem;">Memes</p>
+        </div>
+        
+        <div class="col-md-3 mb-3">
+            <img src="{% static 'img/ejemplo3.jpg' %}" class="img-fluid" style="border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.08); width: 100%;">
+            <p style="margin-top: 0.75rem; color: var(--text-light); font-size: 0.9rem;">Inspiración visual</p>
+        </div>
+        
+        <div class="col-md-3 mb-3">
+            <img src="{% static 'img/ejemplo4.jpg' %}" class="img-fluid" style="border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.08); width: 100%;">
+            <p style="margin-top: 0.75rem; color: var(--text-light); font-size: 0.9rem;">Frases célebres</p>
+        </div>
+    </div>
+</div>
+<!-- Sección de características -->
+<div class="row text-center" style="margin-top: 3rem;">
+    <div class="col-md-4 mb-4">
+        <div style="width: 48px; height: 48px; margin: 0 auto 1rem; background: #eff6ff; border-radius: 12px; display: flex; align-items: center; justify-content: center;">
+            <i class="bi bi-lightbulb" style="font-size: 24px; color: #1e40af;"></i>
+        </div>
+        <h3 style="font-size: 1.2rem; margin-bottom: 0.5rem; font-weight: 600;">Inspírate</h3>
+        <p style="color: var(--text-light); font-size: 0.95rem;">
+            Guarda todo lo que te motiva en un solo lugar
+        </p>
+    </div>
+    
+    <div class="col-md-4 mb-4">
+        <div style="width: 48px; height: 48px; margin: 0 auto 1rem; background: #f0fdf4; border-radius: 12px; display: flex; align-items: center; justify-content: center;">
+            <i class="bi bi-folder2" style="font-size: 24px; color: #166534;"></i>
+        </div>
+        <h3 style="font-size: 1.2rem; margin-bottom: 0.5rem; font-weight: 600;">Organiza</h3>
+        <p style="color: var(--text-light); font-size: 0.95rem;">
+            Clasifica por temas y encuentra lo que buscas
+        </p>
+    </div>
+    
+    <div class="col-md-4 mb-4">
+        <div style="width: 48px; height: 48px; margin: 0 auto 1rem; background: #fef3c7; border-radius: 12px; display: flex; align-items: center; justify-content: center;">
+            <i class="bi bi-star" style="font-size: 24px; color: #92400e;"></i>
+        </div>
+        <h3 style="font-size: 1.2rem; margin-bottom: 0.5rem; font-weight: 600;">Descubre</h3>
+        <p style="color: var(--text-light); font-size: 0.95rem;">
+            Revive tus favoritos con la vista aleatoria
+        </p>
+    </div>
+</div>
+{% endblock %}

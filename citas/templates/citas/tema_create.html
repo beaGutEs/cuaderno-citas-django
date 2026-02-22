@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block title %}Nuevo Tema{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-6 mx-auto">
+        <h1>Crear Nuevo Tema</h1>
+        
+        <form method="post">
+            {% csrf_token %}
+            
+            <div class="mb-3">
+                <label for="nombre" class="form-label">Nombre del tema</label>
+                <input type="text" 
+                       class="form-control" 
+                       id="nombre" 
+                       name="nombre" 
+                       placeholder="Ej: Motivación, Memes, Filosofía..." 
+                       required 
+                       autofocus>
+                <small class="text-muted">Usa nombres cortos y descriptivos</small>
+            </div>
+            
+            <button type="submit" class="btn btn-primary">Crear Tema</button>
+            <a href="{% url 'citas:quote_list' %}" class="btn btn-secondary">Cancelar</a>
+        </form>
+        
+        <hr class="my-4">
+        
+        <h5>Tus temas actuales:</h5>
+        {% if temas %}
+            <ul class="list-unstyled">
+                {% for tema in temas %}
+                <li class="mb-2">
+                    <span class="badge bg-info">{{ tema.name }}</span>
+                </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p class="text-muted">Aún no tienes temas creados</p>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

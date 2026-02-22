@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %}{{ titulo }}{% endblock %}
+
+{% block content %}
+<h1>{{ titulo }}</h1>
+
+<div class="row">
+    <div class="col-md-8">
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form|crispy }}
+            
+            <button type="submit" class="btn btn-primary">Guardar</button>
+            <a href="{% url 'citas:quote_list' %}" class="btn btn-secondary">Cancelar</a>
+        </form>
+    </div>
+    
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Ayuda</h5>
+                <p>Debes añadir al menos:</p>
+                <ul>
+                    <li>Texto, o</li>
+                    <li>Una imagen, o</li>
+                    <li>Ambos</li>
+                </ul>
+                <p class="text-muted" style="font-size: 0.9rem;">
+                    El tema es opcional. Si no eliges ninguno, irá al Inbox.
+                </p>
+                <hr>
+                <p style="font-size: 0.85rem; color: var(--text-light);">
+                    <strong>Ejemplos:</strong><br>
+                    • Memes (solo imagen)<br>
+                    • Citas (solo texto)<br>
+                    • Quote cards (imagen + texto)
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
