@@ -93,27 +93,3 @@ Relaciones:
 ```
 
 ---
-
-## `requirements.txt`:
-
-Crea este archivo con:
-```
-Django==5.0.1
-Pillow==10.2.0
-django-crispy-forms==2.1
-crispy-bootstrap5==2.0.0
-```
-
----
-
-## `.gitignore` (si usas GitHub):
-```
-*.pyc
-__pycache__/
-db.sqlite3
-media/
-venv/
-env/
-*.log
-.vscode/
-.idea/
